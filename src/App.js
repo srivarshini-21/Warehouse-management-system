@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts';
 
 const WarehouseSystem = () => {
-  const MAX_CAPACITY = 10000;
-
+  const [maxCapacity, setMaxCapacity] = useState(null); // State for maximum capacity
   const [crops, setCrops] = useState([]);
   const [cropName, setCropName] = useState('');
   const [weight, setWeight] = useState('');
@@ -13,7 +12,7 @@ const WarehouseSystem = () => {
   const [editWeight, setEditWeight] = useState('');
 
   const usedCapacity = crops.reduce((total, crop) => total + crop.weight, 0);
-  const remainingCapacity = MAX_CAPACITY - usedCapacity;
+  const remainingCapacity = maxCapacity ? maxCapacity - usedCapacity : 0;
 
   const pieData = [
     ...crops.map((crop) => ({
@@ -23,19 +22,9 @@ const WarehouseSystem = () => {
     { name: 'Remaining Capacity', value: remainingCapacity > 0 ? remainingCapacity : 0 },
   ];
 
-  // Generate vibrant colors dynamically
-  const generateColors = (count) => {
-    const colors = [];
-    for (let i = 0; i < count; i++) {
-      const r = Math.floor(Math.random() * 156) + 100; // Random value between 100-255
-      const g = Math.floor(Math.random() * 156) + 100;
-      const b = Math.floor(Math.random() * 156) + 100;
-      colors.push(`rgb(${r}, ${g}, ${b})`);
-    }
-    return colors;
-  };
-
-  const COLORS = generateColors(pieData.length);
+  const COLORS = [
+    '#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A28EFF', '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +37,7 @@ const WarehouseSystem = () => {
       setError('Please enter a valid weight');
       return;
     }
-    if (usedCapacity + weightNum > MAX_CAPACITY) {
+    if (usedCapacity + weightNum > maxCapacity) {
       setError('Adding this crop would exceed warehouse capacity');
       return;
     }
@@ -92,33 +81,105 @@ const WarehouseSystem = () => {
     setError('');
   };
 
+  // Render the input for maximum capacity if not set
+  if (maxCapacity === null) {
+    return (
+      <div className="container mx-auto p-4">
+        <h1 className="text-3xl font-bold mb-6 text-center">Warehouse Management System</h1>
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h2 className="text-xl font-semibold mb-4">Set Maximum Capacity</h2>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const capacity = parseFloat(e.target.capacity.value);
+              if (isNaN(capacity) || capacity <= 0) {
+                alert('Please enter a valid capacity');
+                return;
+              }
+              setMaxCapacity(capacity);
+            }}
+          >
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2" htmlFor="capacity">
+                Maximum Capacity (kg)
+              </label>
+              <input
+                type="number"
+                id="capacity"
+                name="capacity"
+                className="w-full px-3 py-2 border rounded-lg"
+                placeholder="Enter maximum capacity in kg"
+                step="1"
+                min="1"
+              />
+            </div>
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            >
+              Set Capacity
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  // Render the main application once the maximum capacity is set
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6 text-center">Warehouse Management System</h1>
 
-      {/* Capacity Summary */}
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4">Warehouse Capacity</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-medium text-blue-800">Total Capacity</h3>
-            <p className="text-2xl font-bold">{MAX_CAPACITY.toLocaleString()} kg</p>
+      {/* Capacity Summary and Pie Chart Side-by-Side */}
+      <div className="flex-row">
+        {/* Capacity Summary */}
+        <div className="flex-item bg-white rounded-lg shadow-md p-6">
+          <h2 className="text-xl font-semibold mb-4">Warehouse Capacity</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <h3 className="font-medium text-blue-800">Total Capacity</h3>
+              <p className="text-2xl font-bold">{maxCapacity.toLocaleString()} kg</p>
+            </div>
+            <div className="bg-green-50 p-4 rounded-lg">
+              <h3 className="font-medium text-green-800">Used Capacity</h3>
+              <p className="text-2xl font-bold">{usedCapacity.toLocaleString()} kg</p>
+              <p className="text-sm">({((usedCapacity / maxCapacity) * 100).toFixed(1)}%)</p>
+            </div>
+            <div className="bg-yellow-50 p-4 rounded-lg">
+              <h3 className="font-medium text-yellow-800">Remaining Capacity</h3>
+              <p className="text-2xl font-bold">{remainingCapacity.toLocaleString()} kg</p>
+              <p className="text-sm">({((remainingCapacity / maxCapacity) * 100).toFixed(1)}%)</p>
+            </div>
           </div>
-          <div className="bg-green-50 p-4 rounded-lg">
-            <h3 className="font-medium text-green-800">Used Capacity</h3>
-            <p className="text-2xl font-bold">{usedCapacity.toLocaleString()} kg</p>
-            <p className="text-sm">({((usedCapacity / MAX_CAPACITY) * 100).toFixed(1)}%)</p>
-          </div>
-          <div className="bg-yellow-50 p-4 rounded-lg">
-            <h3 className="font-medium text-yellow-800">Remaining Capacity</h3>
-            <p className="text-2xl font-bold">{remainingCapacity.toLocaleString()} kg</p>
-            <p className="text-sm">({((remainingCapacity / MAX_CAPACITY) * 100).toFixed(1)}%)</p>
-          </div>
+        </div>
+
+        {/* Pie Chart */}
+        <div className="flex-item pie-chart-container">
+          <ResponsiveContainer width="100%" height={350}>
+            <PieChart>
+              <Pie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                outerRadius={100}
+                fill="#8884d8"
+                dataKey="value"
+                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip formatter={(value) => [`${value} kg`, 'Weight']} />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Add Crop Form */}
+      {/* Add Crop Form */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         <div className="bg-white rounded-lg shadow-md p-6">
           <h2 className="text-xl font-semibold mb-4">Add Crop to Warehouse</h2>
           <form onSubmit={handleSubmit}>
@@ -158,33 +219,6 @@ const WarehouseSystem = () => {
               Add Crop
             </button>
           </form>
-        </div>
-
-        {/* Capacity Visualization */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold mb-4">Capacity Visualization</h2>
-          <div style={{ height: '256px', width: '100%' }}>
-            <ResponsiveContainer>
-              <PieChart>
-                <Pie
-                  data={pieData}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
-                >
-                  {pieData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip formatter={(value) => [`${value} kg`, 'Weight']} />
-                <Legend />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
         </div>
       </div>
 

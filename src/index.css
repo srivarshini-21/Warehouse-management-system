@@ -29,15 +29,14 @@ h1 {
 
 /* Card Styles */
 .bg-white {
-  background-color: #ffffff;
+  background-color: #c0bbbb;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
   padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .bg-white:hover {
-  transform: translateY(-5px); /* Lift effect */
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 
@@ -72,7 +71,6 @@ button {
 
 button:hover {
   background-color: #1d4ed8; /* Darker blue on hover */
-  transform: scale(1.05); /* Slight zoom effect */
 }
 
 button:active {
@@ -107,45 +105,33 @@ tr:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px; /* Ensure consistent height */
-  background-color: #ffffff;
+  height: 350px; /* Increased height */
+  background-color: #c0bbbb;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
   padding: 20px;
-  animation: fadeIn 1s ease-in-out;
+  text-align: center; /* Align text in the center */
+  overflow: visible; /* Ensure labels are not clipped */
+  position:relative ;
 }
 
-/* Vibrant Colors for Pie Chart */
-.pie-chart-colors {
-  --color-1: #0088FE;
-  --color-2: #00C49F;
-  --color-3: #FFBB28;
-  --color-4: #FF8042;
-  --color-5: #A28EFF;
-  --color-6: #FF6384;
+/* Pie Chart Labels */
+.recharts-label {
+  font-size: 14px;
+  font-weight: bold;
+  fill: #333; /* Dark text for readability */
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Flexbox for Side-by-Side Layout */
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.flex-row > .flex-item {
+  flex: 1;
+  min-width: 300px; /* Ensure proper responsiveness */
 }
 
 /* Additional Global Styles */
