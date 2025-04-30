@@ -146,3 +146,179 @@ tr:hover {
 .text-yellow-800 {
   color: #b45309;
 }
+
+/* Logistics Page Styles */
+.logistics-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9fafb; /* Light background for contrast */
+}
+
+.logistics-header {
+  text-align: center;
+  color: #1e3a8a; /* Vibrant blue */
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  background-color: #2563eb; /* Blue button */
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #1d4ed8; /* Darker blue on hover */
+}
+
+.order-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-5px); /* Lift effect */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.order-header h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #374151; /* Dark gray */
+}
+
+.order-header p {
+  color: #6b7280; /* Medium gray */
+}
+
+.order-products {
+  margin-bottom: 20px;
+}
+
+.order-products h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #374151;
+  margin-bottom: 10px;
+}
+
+.order-products ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.order-products li {
+  color: #4b5563; /* Medium gray */
+  font-size: 1rem;
+}
+
+/* Timeline Styles */
+.timeline {
+  display: flex; /* Use flexbox for horizontal alignment */
+  justify-content: space-between; /* Space out the timeline items */
+  align-items: center; /* Align items vertically in the center */
+  position: relative;
+  padding: 20px 0;
+  border-top: 2px solid #d1d5db; /* Horizontal line for the timeline */
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column; /* Stack icon and content vertically */
+  align-items: center;
+  text-align: center;
+  position: relative;
+  flex: 1; /* Distribute items evenly */
+}
+
+.timeline-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #d1d5db; /* Light gray line between items */
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.timeline-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+
+.timeline-icon.ordered {
+  background-color: #2563eb; /* Blue */
+}
+
+.timeline-icon.packed {
+  background-color: #facc15; /* Yellow */
+}
+
+.timeline-icon.shipped {
+  background-color: #a855f7; /* Purple */
+}
+
+.timeline-icon.delivered {
+  background-color: #22c55e; /* Green */
+}
+
+.timeline-content h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #374151;
+  margin-bottom: 5px;
+}
+
+.timeline-content p {
+  font-size: 0.875rem;
+  color: #6b7280; /* Medium gray */
+}
+
+.status-buttons {
+  margin-top: 10px;
+}
+
+.status-buttons button {
+  background-color: #2563eb; /* Blue */
+  color: #ffffff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.status-buttons button:hover {
+  background-color: #1d4ed8; /* Darker blue */
+}
