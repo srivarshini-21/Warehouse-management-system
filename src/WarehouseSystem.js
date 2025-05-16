@@ -139,6 +139,13 @@ const WarehouseSystem = () => {
   // Render the main application once the maximum capacity is set
   return (
     <div className="container mx-auto p-4">
+      {/* Back to Home Button */}
+      <button
+        onClick={() => navigate('/')}
+        className="mb-4 text-blue-600 hover:text-blue-800"
+      >
+        ← Back to Home
+      </button>
       <h1 className="text-3xl font-bold mb-6 text-center">Warehouse Management System</h1>
 
       {/* Capacity Summary and Pie Chart Side-by-Side */}
