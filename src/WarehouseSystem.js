@@ -165,7 +165,7 @@ const WarehouseSystem = () => {
         </div>
 
         {/* Pie Chart */}
-        <div className="flex-item pie-chart-container">
+        <div className="bg-white">
           <ResponsiveContainer width="100%" height={350}>
             <PieChart>
               <Pie

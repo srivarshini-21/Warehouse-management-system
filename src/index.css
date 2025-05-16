@@ -1,48 +1,63 @@
 /* General Styles */
 body {
+  background-image: url('Background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  backface-visibility: 50%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f9fafb; /* Light background for contrast */
-  color: #333; /* Dark text for readability */
+  background-color: #f9fafb;
+  color: #333;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+}
+
+.login-container {
   display: flex;
-  flex-direction: column;
-  gap: 20px; /* Add spacing between sections */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+/* Add this after your existing h1 styles or at the end of your CSS file */
+.login-container h1 {
+  color: #111 !important;
 }
 
 /* Header Styles */
 h1 {
-  color: #1e3a8a; /* Vibrant blue */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  text-align: center; /* Center align the header */
+  color: #fcfcfc;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
   animation: fadeIn 1s ease-in-out;
 }
 
 /* Card Styles */
 .bg-white {
-  background-color: #c0bbbb;
+  background-color: #fcfcfc;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transition: box-shadow 0.3s ease;
+  margin-bottom: 20px;
 }
 
 .bg-white:hover {
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Input Box Styles */
 input {
-  border: 1px solid #d1d5db; /* Light gray border */
+  border: 1px solid #d1d5db;
   border-radius: 6px;
   padding: 10px;
   width: 100%;
@@ -51,14 +66,14 @@ input {
 }
 
 input:focus {
-  border-color: #2563eb; /* Blue border on focus */
-  box-shadow: 0 0 4px rgba(37, 99, 235, 0.5); /* Glow effect */
+  border-color: #2563eb;
+  box-shadow: 0 0 4px rgba(37, 99, 235, 0.5);
   outline: none;
 }
 
 /* Button Styles */
 button {
-  background-color: #2563eb; /* Blue button */
+  background-color: #2563eb;
   color: #ffffff;
   padding: 10px 20px;
   border: none;
@@ -70,11 +85,11 @@ button {
 }
 
 button:hover {
-  background-color: #1d4ed8; /* Darker blue on hover */
+  background-color: #1d4ed8;
 }
 
 button:active {
-  transform: scale(0.95); /* Pressed effect */
+  transform: scale(0.95);
 }
 
 /* Table Styles */
@@ -87,51 +102,50 @@ table {
 th, td {
   padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #e5e7eb; /* Light gray border */
+  border-bottom: 1px solid #e5e7eb;
 }
 
 th {
-  background-color: #f3f4f6; /* Light gray background */
-  color: #374151; /* Dark gray text */
+  background-color: #f3f4f6;
+  color: #374151;
   font-weight: bold;
 }
 
 tr:hover {
-  background-color: #f9fafb; /* Light hover effect */
-}
-
-/* Pie Chart Container */
-.pie-chart-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 350px; /* Increased height */
-  background-color: #c0bbbb;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  padding: 20px;
-  text-align: center; /* Align text in the center */
-  overflow: visible; /* Ensure labels are not clipped */
-  position:relative ;
-}
-
-/* Pie Chart Labels */
-.recharts-label {
-  font-size: 14px;
-  font-weight: bold;
-  fill: #333; /* Dark text for readability */
+  background-color: #f9fafb;
 }
 
 /* Flexbox for Side-by-Side Layout */
-.flex-row {
+.flex {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
 }
 
-.flex-row > .flex-item {
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.flex-1 {
   flex: 1;
-  min-width: 300px; /* Ensure proper responsiveness */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .lg\:flex-row {
+    flex-direction: column;
+  }
 }
 
 /* Additional Global Styles */
@@ -147,26 +161,10 @@ tr:hover {
   color: #b45309;
 }
 
-/* Logistics Page Styles */
-.logistics-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9fafb; /* Light background for contrast */
-}
-
-.logistics-header {
-  text-align: center;
-  color: #1e3a8a; /* Vibrant blue */
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
 .back-button {
   display: inline-block;
   margin-bottom: 20px;
-  background-color: #2563eb; /* Blue button */
+  background-color: #2563eb;
   color: #ffffff;
   padding: 10px 20px;
   border: none;
@@ -178,147 +176,10 @@ tr:hover {
 }
 
 .back-button:hover {
-  background-color: #1d4ed8; /* Darker blue on hover */
+  background-color: #1d4ed8;
 }
 
-.order-card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  padding: 20px;
-  margin-bottom: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.order-card:hover {
-  transform: translateY(-5px); /* Lift effect */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
-}
-
-.order-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.order-header h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #374151; /* Dark gray */
-}
-
-.order-header p {
-  color: #6b7280; /* Medium gray */
-}
-
-.order-products {
-  margin-bottom: 20px;
-}
-
-.order-products h3 {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #374151;
-  margin-bottom: 10px;
-}
-
-.order-products ul {
-  list-style-type: disc;
-  padding-left: 20px;
-}
-
-.order-products li {
-  color: #4b5563; /* Medium gray */
-  font-size: 1rem;
-}
-
-/* Timeline Styles */
-.timeline {
-  display: flex; /* Use flexbox for horizontal alignment */
-  justify-content: space-between; /* Space out the timeline items */
-  align-items: center; /* Align items vertically in the center */
-  position: relative;
-  padding: 20px 0;
-  border-top: 2px solid #d1d5db; /* Horizontal line for the timeline */
-}
-
-.timeline-item {
-  display: flex;
-  flex-direction: column; /* Stack icon and content vertically */
-  align-items: center;
-  text-align: center;
-  position: relative;
-  flex: 1; /* Distribute items evenly */
-}
-
-.timeline-item:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #d1d5db; /* Light gray line between items */
-  transform: translateY(-50%);
-  z-index: -1;
-}
-
-.timeline-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  font-size: 1.25rem;
-  color: #ffffff;
-}
-
-.timeline-icon.ordered {
-  background-color: #2563eb; /* Blue */
-}
-
-.timeline-icon.packed {
-  background-color: #facc15; /* Yellow */
-}
-
-.timeline-icon.shipped {
-  background-color: #a855f7; /* Purple */
-}
-
-.timeline-icon.delivered {
-  background-color: #22c55e; /* Green */
-}
-
-.timeline-content h4 {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #374151;
-  margin-bottom: 5px;
-}
-
-.timeline-content p {
-  font-size: 0.875rem;
-  color: #6b7280; /* Medium gray */
-}
-
-.status-buttons {
-  margin-top: 10px;
-}
-
-.status-buttons button {
-  background-color: #2563eb; /* Blue */
-  color: #ffffff;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.status-buttons button:hover {
-  background-color: #1d4ed8; /* Darker blue */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
